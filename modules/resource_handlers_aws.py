@@ -447,9 +447,10 @@ def handle_sg_relationships(tfdata: Dict[str, Any]) -> Dict[str, Any]:
                         if len(tfdata["graphdict"][connection]) > 0:
                             unique_name = connection + "_" + target.split(".")[-1]
                             tfdata["graphdict"][unique_name] = newlist
-                            tfdata["meta_data"][unique_name] = copy.deepcopy(
-                                tfdata["meta_data"][connection]
-                            )
+                            if connection in tfdata["meta_data"]:
+                                tfdata["meta_data"][unique_name] = copy.deepcopy(
+                                    tfdata["meta_data"][connection]
+                                )
                             sg_to_purge.append(connection)
                         else:
                             tfdata["graphdict"][connection] = newlist
