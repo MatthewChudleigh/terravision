@@ -329,7 +329,8 @@ def reverse_relations(tfdata: Dict[str, Any]) -> Dict[str, Any]:
                     tfdata["graphdict"][c] = list()
                 if n not in tfdata["graphdict"][c]:
                     tfdata["graphdict"][c].append(n)
-                tfdata["graphdict"][n].remove(c)
+                if c in tfdata["graphdict"][n]:
+                    tfdata["graphdict"][n].remove(c)
 
             # Reverse if connection is a forced origin
             # Skip reversal for synthetic grouping nodes (tv_ prefix) - these are
@@ -351,7 +352,8 @@ def reverse_relations(tfdata: Dict[str, Any]) -> Dict[str, Any]:
             if reverse_origin:
                 if n not in tfdata["graphdict"][c]:
                     tfdata["graphdict"][c].append(n)
-                tfdata["graphdict"][n].remove(c)
+                if c in tfdata["graphdict"][n]:
+                    tfdata["graphdict"][n].remove(c)
 
     return tfdata
 
