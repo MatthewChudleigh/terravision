@@ -351,7 +351,7 @@ def reverse_relations(tfdata: Dict[str, Any]) -> Dict[str, Any]:
             if reverse_origin:
                 if n not in tfdata["graphdict"][c]:
                     tfdata["graphdict"][c].append(n)
-                tfdata["graphdict"][node].remove(c)
+                tfdata["graphdict"][n].remove(c)
 
     return tfdata
 
