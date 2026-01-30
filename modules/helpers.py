@@ -849,7 +849,7 @@ def find_resource_containing(search_list: List[str], keyword: str) -> Union[str,
 
 def find_all_resources_containing(
     search_list: List[str], keyword: str
-) -> Union[List[str], bool]:
+) -> List[str]:
     """Find all resources in list containing keyword.
 
     Args:
@@ -857,16 +857,13 @@ def find_all_resources_containing(
         keyword: Keyword to search for
 
     Returns:
-        List of matching resource names or False
+        List of matching resource names (empty list if none found)
     """
     foundlist = list()
     for actual_name in search_list:
         if keyword in actual_name:
             foundlist.append(actual_name)
-    if foundlist:
-        return foundlist
-    else:
-        return False
+    return foundlist
 
 
 def append_dictlist(thelist: List[Any], new_item: Any) -> List[Any]:
