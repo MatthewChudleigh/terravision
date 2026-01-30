@@ -664,8 +664,8 @@ def aws_handle_lb(tfdata: Dict[str, Any]) -> Dict[str, Any]:
 
             if (
                 tfdata["meta_data"].get(connection)
-                and tfdata["meta_data"][connection].get("count")
-                or tfdata["meta_data"][connection].get("desired_count")
+                and (tfdata["meta_data"][connection].get("count")
+                or tfdata["meta_data"][connection].get("desired_count"))
             ) and connection.split(".")[0] not in SHARED_SERVICES:
                 # Sets LB count to the max of the count of any dependencies
                 conn_count = tfdata["meta_data"][connection].get("count")
